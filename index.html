@@ -91,16 +91,13 @@
                     <button class="search-toggle-btn text-white" onclick="toggleSearch()">
                         <i class="material-icons">search</i>
                     </button>
+                    <!-- Cart button - always visible on both desktop and mobile -->
                     <button class="cart-btn text-white" onclick="openCart()">
                         <i class="material-icons">shopping_cart</i> 
                         <span class="cart-count">0</span>
                     </button>
                 </div>
-                <div class="mobile-controls">
-                    <button class="mobile-menu-btn text-white" onclick="toggleMobileMenu()">
-                        <i class="material-icons">menu</i>
-                    </button>
-                </div>
+                <!-- Mobile controls removed as requested -->
             </div>
             <div class="mobile-search" id="mobileSearch">
                 <input type="text" placeholder="Tìm kiếm sản phẩm, đồ uống...">
@@ -142,6 +139,35 @@
             </nav>
         </div>
     </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item active">
+            <i class="material-icons">home</i>
+            <span>Trang chủ</span>
+        </a>
+        <a href="menu.html" class="mobile-nav-item">
+            <i class="material-icons">restaurant_menu</i>
+            <span>Menu</span>
+        </a>
+        <a href="stores.html" class="mobile-nav-item">
+            <i class="material-icons">store</i>
+            <span>Cửa hàng</span>
+        </a>
+        <a href="news.html" class="mobile-nav-item">
+            <i class="material-icons">article</i>
+            <span>Tin tức</span>
+        </a>
+        <a href="about.html" class="mobile-nav-item">
+            <i class="material-icons">explore</i>
+            <span>Giới thiệu</span>
+        </a>
+        <a href="#" class="mobile-nav-item" onclick="openCart(); return false;">
+            <i class="material-icons">shopping_bag</i>
+            <span class="cart-badge">0</span>
+            <span>Giỏ hàng</span>
+        </a>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
