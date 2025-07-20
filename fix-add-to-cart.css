@@ -1,0 +1,44 @@
+/* Ensure Add to Cart buttons are always visible */
+.product-card .add-to-cart {
+    display: block !important;
+    width: 100%;
+    background: linear-gradient(135deg, #e3c08d, #d1a76f);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.product-card .add-to-cart:hover {
+    background: linear-gradient(135deg, #d1a76f, #b8956a);
+    transform: translateY(-2px);
+}
+
+/* Fix for category display */
+.product-card[data-category] {
+    transition: all 0.3s ease;
+}
+
+/* Ensure product info is properly displayed */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-info .price {
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+/* Fix for mobile display */
+@media (max-width: 768px) {
+    .product-card .add-to-cart {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
