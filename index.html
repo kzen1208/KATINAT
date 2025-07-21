@@ -91,7 +91,7 @@
                     <button class="search-toggle-btn text-white" onclick="toggleSearch()">
                         <i class="material-icons">search</i>
                     </button>
-                    <!-- Cart button - always visible on both desktop and mobile -->
+                    <!-- Cart button - visible on desktop, hidden on mobile -->
                     <button class="cart-btn text-white" onclick="openCart()">
                         <i class="material-icons">shopping_cart</i> 
                         <span class="cart-count">0</span>
@@ -760,5 +760,7 @@
 
     <script src="script.js"></script>
     <script src="mobile-functions.js"></script>
+    <!-- Cart synchronization script -->
+    <script src="cart-sync.js"></script>
 </body>
 </html>
