@@ -14,47 +14,38 @@ function closeSidebar() {
 }
 
 function toggleSearch() {
-    const mobileSearch = document.getElementById('mobileSearch');
-    
-    if (mobileSearch) {
-        mobileSearch.classList.toggle('active');
-        
-        if (mobileSearch.classList.contains('active')) {
-            mobileSearch.style.maxHeight = '80px';
-            mobileSearch.style.opacity = '1';
-            const input = mobileSearch.querySelector('input');
-            if (input) input.focus();
-        } else {
-            mobileSearch.style.maxHeight = '0';
-            mobileSearch.style.opacity = '0';
-        }
+    // Không cần thực hiện gì vì search box đã hiển thị trực tiếp trong header
+    const searchInput = document.querySelector('.search-box input');
+    if (searchInput) {
+        searchInput.focus();
     }
 }
 
-// Handle mobile search
-function handleMobileSearch() {
-    const searchInput = document.querySelector('.mobile-search input');
-    const searchTerm = searchInput.value.toLowerCase().trim();
+// Handle search
+function handleSearch() {
+    const searchInput = document.querySelector('.search-box input');
+    if (!searchInput) return;
     
+    const searchTerm = searchInput.value.toLowerCase().trim();
     if (!searchTerm) return;
     
     // Redirect to menu page with search
     window.location.href = `menu.html?search=${encodeURIComponent(searchTerm)}`;
 }
 
-// Add event listeners for mobile search
+// Add event listeners for search
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileSearchBtn = document.querySelector('.mobile-search .search-btn');
-    const mobileSearchInput = document.querySelector('.mobile-search input');
+    const searchBtn = document.querySelector('.search-box .search-btn');
+    const searchInput = document.querySelector('.search-box input');
     
-    if (mobileSearchBtn) {
-        mobileSearchBtn.addEventListener('click', handleMobileSearch);
+    if (searchBtn) {
+        searchBtn.addEventListener('click', handleSearch);
     }
     
-    if (mobileSearchInput) {
-        mobileSearchInput.addEventListener('keypress', function(e) {
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                handleMobileSearch();
+                handleSearch();
             }
         });
     }
