@@ -13,13 +13,13 @@ body {
 }
 
 /* Global text styles */
-h1, h2, h3, h4, h5, h6 {
-    color: #1a202c !important;
+h1, h2, h3, h5, h6 {
+    color: #000000 !important;
     font-weight: 600;
 }
 
 p {
-    color: #2d3748;
+    color: #977b51;
 }
 
 .news-card h3,
@@ -1736,8 +1736,8 @@ body.menu-open {
 
 /* Menu Page Styles */
 .menu-page {
-    padding: 6rem 0 4rem;
-    margin-top: 80px; /* Giữ nguyên margin-top để phù hợp với header */
+    padding: 2rem 0 4rem;
+    margin-top: 0;
     background: #f8f9fa;
 }
 
@@ -1927,8 +1927,8 @@ body.menu-open {
 
 /* Store Page Styles */
 .store-page {
-    padding: 6rem 0 4rem;
-    margin-top: 80px;
+    padding: 2rem 0 4rem;
+    margin-top: 0;
     background: #f8f9fa;
 }
 
@@ -1946,8 +1946,8 @@ body.menu-open {
 
 /* News Page Styles */
 .news-page {
-    padding: 6rem 0 4rem;
-    margin-top: 80px;
+    padding: 2rem 0 4rem;
+    margin-top: 0;
 }
 
 .featured-article {
@@ -2308,8 +2308,8 @@ body.menu-open {
 
 /* About Page Styles */
 .about-page {
-    padding: 6rem 0 4rem;
-    margin-top: 80px;
+    padding: 2rem 0 4rem;
+    margin-top: 0;
 }
 
 .about-hero {
@@ -3662,8 +3662,8 @@ body.menu-open {
     .menu-page,
     .store-page,
     .news-page {
-        margin-top: 0;
-        padding-top: 0.5rem;
+        margin-top: 0 !important;
+        padding-top: 0.5rem !important;
     }
     
     .mobile-bottom-nav {
