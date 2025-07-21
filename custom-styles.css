@@ -149,6 +149,15 @@
         clear: both !important;
     }
     
+    /* Fix for the gap between header and banner */
+    .about-page,
+    .menu-page,
+    .store-page,
+    .news-page {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
     .menu-categories {
         margin-top: 30px !important;
         position: static !important;
