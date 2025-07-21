@@ -55,7 +55,99 @@ p {
 /* Header */
 .header {
     background: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);    /* --- Đảm bảo hero-slider và các nút điều hướng luôn nổi trên banner --- */
+    .hero-slider {
+        position: relative;
+        width: 100%;
+        height: auto;
+        z-index: 1; /* Đảm bảo slider nằm trên nền */
+        overflow: visible;
+    }
+    
+    .slider-controls {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+        transform: translateY(-50%);
+        z-index: 10; /* Đảm bảo nút điều hướng luôn nổi trên banner */
+        pointer-events: none; /* Để không che các phần tử khác, nhưng nút vẫn click được */
+    }
+    
+    .slider-controls button {
+        pointer-events: auto;
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 22px;
+        cursor: pointer;
+        z-index: 11;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    
+    .slider-controls button:hover {
+        background: rgba(0,0,0,0.8);
+    }
+    
+    @media (max-width: 768px) {
+        .slider-controls {
+            top: 45%;
+            padding: 0 2vw;
+        }
+        .slider-controls button {
+            width: 36px;
+            height: 36px;
+            font-size: 18px;
+        }
+    }
+    
+    /* Đảm bảo ảnh banner không bị che bởi nút search hoặc các nút khác */
+    .hero-slide img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        z-index: 1;
+        position: relative;
+    }
+    
+    /* Đảm bảo các phần tử trên banner không bị che khuất */
+    .hero-slide,
+    .hero-slide.active {
+        z-index: 2;
+        position: relative;
+    }
+    
+    /* Đảm bảo slider-dots luôn hiển thị trên banner */
+    .slider-dots {
+        position: absolute;
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 12;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        pointer-events: auto;
+        background: none;
+    }
+    
+    @media (max-width: 768px) {
+        .slider-dots {
+            bottom: 10px;
+            gap: 7px;
+        }
+    }
     position: relative;
     width: 100%;
     z-index: 1000;
@@ -143,12 +235,18 @@ p {
     position: relative;
 }
 
+/* Base cart count styles - overridden by media queries */
 .cart-count {
     background: #E3C08D;
     color: white;
     border-radius: 50%;
     padding: 0.2rem 0.5rem;
     font-size: 0.8rem;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Hero Section */
@@ -166,7 +264,8 @@ p {
     .hero {
         height: auto;
         min-height: 250px;
-        margin-top: 0;
+        margin-top: 70px; /* Thêm margin-top để banner không bị che bởi header */
+        position: relative;
     }
 }
 
@@ -205,6 +304,14 @@ p {
     justify-content: space-between;
     padding: 0 20px;
     transform: translateY(-50%);
+    z-index: 50; /* Tăng z-index để đảm bảo nút điều khiển luôn hiển thị trên cùng */
+    pointer-events: none; /* Để có thể click vào banner */
+}
+
+.slider-controls button {
+    pointer-events: auto; /* Cho phép click vào nút */
+    position: relative;
+    z-index: 51; /* Đảm bảo nút có z-index cao hơn */
 }
 
 .prev-btn, .next-btn {
@@ -2655,7 +2762,9 @@ body.menu-open {
 /* Mobile Navigation - Full Width Header */
 @media (max-width: 768px) {
     .header {
-        position: relative;
+        position: fixed; /* Đổi thành fixed để header luôn hiển thị trên cùng */
+        top: 0;
+        left: 0;
         width: 100%;
         z-index: 1000;
         background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
@@ -2681,12 +2790,14 @@ body.menu-open {
         height: 100%;
         width: 100%;
         margin: 0;
+        flex-direction: row !important; /* Đảm bảo logo và search nằm trên cùng một hàng */
     }
     
     .logo {
         height: 45px;
         flex-shrink: 0;
-        order: 1;
+        margin-right: auto; /* Đẩy logo sát về bên trái */
+        order: 0; /* Reset order để đảm bảo logo nằm đầu tiên */
     }
     
     .logo img {
@@ -2694,6 +2805,12 @@ body.menu-open {
         width: auto;
         object-fit: contain;
     }
+    
+    /* Search box styling is now in Mobile Header Layout section */
+    
+    /* Toggle search button is now hidden in Mobile Header Layout section */
+    
+    /* Header actions styling is now in Mobile Header Layout section */
     
     .mobile-controls {
         display: none;
@@ -2710,9 +2827,7 @@ body.menu-open {
         display: none;
     }
     
-    .search-box {
-        display: none !important;
-    }
+    /* Search box styling is now in Mobile Header Layout section */
     
     .mobile-menu-btn,
     .search-toggle-btn,
@@ -2851,29 +2966,11 @@ body.menu-open {
         display: block;
     }
     
-    .search-box {
-        display: none;
-    }
+    /* Search box is now visible in header */
     
+    /* Ẩn mobile search vì đã hiển thị search box trong header */
     .mobile-search {
-        display: block;
-        padding: 0.75rem 1rem;
-        background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
-        border-top: 1px solid rgba(255,255,255,0.1);
-        position: relative;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        width: 100%;
-        margin: 0;
-    }
-    
-    .mobile-search.active {
-        max-height: 80px;
-        opacity: 1;
+        display: none !important;
     }
     
     .mobile-search input {
@@ -3073,12 +3170,15 @@ body.menu-open {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 1rem 0 !important;
+        padding: 0.75rem 1rem !important;
         flex-wrap: nowrap !important;
+        flex-direction: row !important;
+        background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%) !important;
     }
     .logo {
         flex: 0 0 auto !important;
-        height: 60px !important;
+        height: 45px !important;
+        margin-right: 0 !important;
     }
     .nav {
         display: none !important;
@@ -3102,17 +3202,26 @@ body.menu-open {
         gap: 0.5rem !important;
         flex: 0 0 auto !important;
     }
-    .search-box { display: none !important; }
+    .search-box { 
+        display: flex !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-radius: 20px !important;
+        padding: 0.4rem 0.8rem !important;
+        max-width: 150px !important;
+        margin-left: auto !important;
+        margin-right: 10px !important;
+    }
+    .search-box input {
+        width: 100% !important;
+        font-size: 0.9rem !important;
+        color: white !important;
+    }
+    .search-box input::placeholder {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
     .mobile-menu-btn,
     .search-toggle-btn {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 40px !important;
-        height: 40px !important;
-        border-radius: 8px !important;
-        background: rgba(255,255,255,0.1) !important;
-        border: none !important;
+        display: none !important;
     }
     
     /* Keep cart button visible on mobile with desktop styling */
@@ -3681,6 +3790,53 @@ body.menu-open {
         box-sizing: border-box;
     }
 }
+
+/* Cart Icon Responsive Behavior */
+
+/* Desktop: Show header cart icon, hide mobile bottom nav cart icon */
+@media (min-width: 769px) {
+  /* Show cart icon in header */
+  .header .cart-btn {
+    display: flex !important;
+  }
+  
+  /* Ensure cart count is properly displayed */
+  .header .cart-count {
+    background: #E3C08D;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  /* Hide cart icon in mobile bottom nav */
+  .mobile-bottom-nav .mobile-nav-item:last-child {
+    display: none !important;
+  }
+}
+
+/* Mobile: Hide header cart icon, show mobile bottom nav cart icon */
+@media (max-width: 768px) {
+  /* Hide cart icon in header */
+  .header .cart-btn {
+    display: none !important;
+  }
+  
+  /* Show cart icon in mobile bottom nav */
+  .mobile-bottom-nav .mobile-nav-item:last-child {
+    display: flex !important;
+  }
+}
 /* Sticky Footer */
 html, body {
     height: 100%;
@@ -3703,3 +3859,48 @@ body {
 .footer {
     margin-top: auto;
 }
+/* Ensure Add to Cart buttons are always visible */
+.product-card .add-to-cart {
+    display: block !important;
+    width: 100%;
+    background: linear-gradient(135deg, #e3c08d, #d1a76f);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.product-card .add-to-cart:hover {
+    background: linear-gradient(135deg, #d1a76f, #b8956a);
+    transform: translateY(-2px);
+}
+
+/* Fix for category display */
+.product-card[data-category] {
+    transition: all 0.3s ease;
+}
+
+/* Ensure product info is properly displayed */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-info .price {
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+/* Fix for mobile display */
+@media (max-width: 768px) {
+    .product-card .add-to-cart {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
