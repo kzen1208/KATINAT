@@ -1,0 +1,177 @@
+/* Banner Responsive Fix */
+
+/* Đảm bảo hero section hiển thị đúng */
+.hero {
+  position: relative !important;
+  overflow: visible !important;
+  margin-top: 70px !important; /* Khoảng cách từ header */
+}
+
+/* Đảm bảo hero-slider hiển thị đúng */
+.hero-slider {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  z-index: 1;
+}
+
+/* Đảm bảo hero-slide hiển thị đúng */
+.hero-slide {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Đảm bảo hình ảnh hiển thị đúng */
+.hero-slide img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* Đảm bảo nút điều hướng luôn hiển thị đúng vị trí */
+.slider-controls {
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 0 15px !important;
+  transform: translateY(-50%) !important;
+  z-index: 100 !important; /* Đảm bảo nút luôn hiển thị trên cùng */
+  pointer-events: none !important; /* Cho phép click vào banner */
+}
+
+/* Đảm bảo nút điều hướng có thể click */
+.prev-btn, .next-btn {
+  pointer-events: auto !important; /* Cho phép click vào nút */
+  position: relative !important;
+  z-index: 101 !important; /* Cao hơn slider-controls */
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: rgba(227, 192, 141, 0.8) !important;
+  color: white !important;
+  border: none !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background 0.3s !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
+}
+
+.prev-btn:hover, .next-btn:hover {
+  background: rgba(209, 167, 111, 0.9) !important;
+}
+
+/* Đảm bảo slider-dots hiển thị đúng */
+.slider-dots {
+  position: absolute !important;
+  bottom: 15px !important;
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  gap: 8px !important;
+  justify-content: center !important;
+  z-index: 100 !important;
+}
+
+.dot {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  background: rgba(255,255,255,0.5) !important;
+  cursor: pointer !important;
+  transition: background 0.3s !important;
+}
+
+.dot.active {
+  background: #E3C08D !important;
+}
+
+/* Đảm bảo search box hiển thị đúng */
+.header .search-box {
+  display: flex !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 20px !important;
+  padding: 0.4rem 0.8rem !important;
+  margin-right: 10px !important;
+  position: relative !important;
+  z-index: 1001 !important;
+}
+
+.header .search-box input {
+  border: none !important;
+  background: none !important;
+  outline: none !important;
+  color: white !important;
+  width: 150px !important;
+}
+
+.header .search-box input::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.header .search-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 70px !important; /* Đảm bảo khoảng cách từ header */
+    min-height: 200px !important;
+  }
+  
+  .prev-btn, .next-btn {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+  }
+  
+  .slider-dots {
+    bottom: 10px !important;
+  }
+  
+  .dot {
+    width: 8px !important;
+    height: 8px !important;
+  }
+  
+  /* Đảm bảo search box hiển thị đúng trên mobile */
+  .header .search-box {
+    max-width: 140px !important;
+  }
+  
+  .header .search-box input {
+    width: 100px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .prev-btn, .next-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 18px !important;
+  }
+  
+  /* Đảm bảo search box hiển thị đúng trên mobile nhỏ */
+  .header .search-box {
+    max-width: 120px !important;
+  }
+  
+  .header .search-box input {
+    width: 80px !important;
+  }
+}
